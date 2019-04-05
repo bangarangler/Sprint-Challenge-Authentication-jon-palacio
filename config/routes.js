@@ -52,8 +52,27 @@ async function register(req, res) {
   }
 }
 
-function login(req, res) {
+async function login(req, res) {
   // implement user login
+  const logData = req.body;
+  if (!logData.username || !logData.password) {
+    res
+      .status(400)
+      .json({ message: `must provide username and password, Bad Request` });
+  }
+  try {
+    const user = await db("users")
+      .where({ username: logData.username })
+      .first();
+    if (user && bcrypt.compareSync(logData.password, user.password)) {
+      const token = generateToken(user);
+      res.status(200).json({ message: `Welcome ${user.username}`, token });
+    } else {
+      res.status(401).json({ message: `You shall not pass` });
+    }
+  } catch (err) {
+    res.status(500).json({ message: `Internal Error, ${err}` });
+  }
 }
 
 function getJokes(req, res) {
