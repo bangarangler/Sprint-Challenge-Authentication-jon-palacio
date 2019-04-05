@@ -16,6 +16,7 @@ class Users extends React.Component {
             </React.Fragment>
           ))}
         </ul>
+        <button onClick={this.props.logout}>Logout</button>
       </>
     );
   }
