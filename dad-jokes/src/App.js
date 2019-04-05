@@ -3,7 +3,7 @@ import { Route, Link, Switch } from "react-router-dom";
 import axios from "axios";
 import Signup from "./components/Signup/Signup.js";
 //import Login from ''
-//import Users from ''
+import Users from "./components/Users/Users.js";
 import "./App.css";
 
 class App extends Component {
@@ -31,6 +31,12 @@ class App extends Component {
             path="/signup"
             render={props => {
               return <Signup {...props} />;
+            }}
+          />
+          <Route
+            path="/users"
+            render={props => {
+              return <Users {...props} />;
             }}
           />
         </main>

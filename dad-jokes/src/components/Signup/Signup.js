@@ -54,6 +54,7 @@ class Signup extends Component {
         console.log(res);
         localStorage.setItem("tokenKey", res.data.token);
         this.setState({ username: "", password: "" });
+        this.props.history.push("/users");
       })
       .catch(err => console.error(err));
   };
