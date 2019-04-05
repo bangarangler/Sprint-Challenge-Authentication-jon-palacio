@@ -46,7 +46,8 @@ async function register(req, res) {
   regData.password = hash;
   try {
     const userID = await db("users").insert(regData);
-    res.status(201).json(userID);
+    const token = generateToken(userID);
+    res.status(201).json({ userID, token });
   } catch (err) {
     res.status(500).json({ message: `Internal Error, ${err}` });
   }
