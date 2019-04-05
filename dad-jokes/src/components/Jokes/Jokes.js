@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-class Users extends React.Component {
+class Jokes extends React.Component {
   state = {
     jokes: []
   };
@@ -41,4 +41,4 @@ class Users extends React.Component {
   }
 }
 
-export default Users;
+export default Jokes;
